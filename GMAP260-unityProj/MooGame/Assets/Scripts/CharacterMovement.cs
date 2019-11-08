@@ -33,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 moveVec = new Vector3(0.0f, 0.0f, 0.0f);
     public void updateMontion()
     {
-        Debug.Log(motion);
+        //Debug.Log(motion);
         
         updateRotation();
 
@@ -68,7 +68,7 @@ public class CharacterMovement : MonoBehaviour
 
     void updateRotation()
     {
-        Debug.Log(targetDirection);
+        //Debug.Log(targetDirection);
         if (targetDirection.magnitude <= 0)
             return;
         Vector3 lookDirection = targetDirection.normalized;

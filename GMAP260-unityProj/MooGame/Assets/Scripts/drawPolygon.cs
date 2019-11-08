@@ -7,7 +7,7 @@ public class drawPolygon : MonoBehaviour
 
     public float distanceDiffLimit = 0.05f;
 
-    private List<Vector3> positions;
+    private List<Vector3> positions = new List<Vector3>();
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +21,9 @@ public class drawPolygon : MonoBehaviour
         savePoint(transform);
         
 
-        //counter checks for every 60 frames
-        //after 60 frames call makePoint function
-        //makePoint adds position to array
+        //X counter checks for every 60 frames
+        //X after 60 frames call makePoint function
+        //X makePoint adds position to array
         //make lines between all pairs of points
         //check if lines cross OR if two points are vey close
         //pass points to checkForCows function
@@ -42,9 +42,22 @@ public class drawPolygon : MonoBehaviour
             if (distanceDiff > distanceDiffLimit)
             {
                 positions.Add(currentPosition);
-                Debug.Log(currentPosition);
+                //Debug.Log(currentPosition);
+                //Debug.Log(positions);
+                //printPositions();
             }
         }
+    }
+
+    private void printPositions()
+    {
+        string tmp = "";
+        foreach (Vector3 p in positions)
+        {
+            tmp += p;
+            
+        }
+        Debug.Log(tmp);
     }
 
 }
