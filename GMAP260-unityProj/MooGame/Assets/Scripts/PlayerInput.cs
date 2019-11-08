@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour
     {
         UpdateJumpInput();
         UpdateMovementInput();
-
+        characterMovement.updateTargetDirection(targetCamera.transform);
         /*if (GameManager.gameManager.cameraState == 0)
             characterMovement.updateTargetDirection(targetCamera.transform);
         else
@@ -53,6 +53,8 @@ public class PlayerInput : MonoBehaviour
         /*if (GameManager.gameManager.cameraState == GameManager.cameraState2D)
             tmpy = 0;*/
 
+        //Debug.Log(tmpx);
+        //Debug.Log(tmpy);
         characterMovement.motion.x = tmpx;
         characterMovement.motion.y = tmpy;
     }

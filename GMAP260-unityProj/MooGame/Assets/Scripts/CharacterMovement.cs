@@ -33,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 moveVec = new Vector3(0.0f, 0.0f, 0.0f);
     public void updateMontion()
     {
-        //Debug.Log(IsGrounded());
+        Debug.Log(motion);
         
         updateRotation();
 
@@ -41,11 +41,12 @@ public class CharacterMovement : MonoBehaviour
         tmpSpeed = Mathf.Clamp(tmpSpeed, 0, 1f);
 
         float tmpy = moveVec.y;
-        
+
         /*if (GameManager.gameManager.cameraState == GameManager.cameraState2D)
             moveVec = targetDirection * tmpSpeed * moveSpeed;
         else
             moveVec = transform.forward * tmpSpeed * moveSpeed;*/
+        moveVec = transform.forward * tmpSpeed * moveSpeed;
 
         if (isjumping)
         {
@@ -67,7 +68,7 @@ public class CharacterMovement : MonoBehaviour
 
     void updateRotation()
     {
-        //Debug.Log(targetDirection);
+        Debug.Log(targetDirection);
         if (targetDirection.magnitude <= 0)
             return;
         Vector3 lookDirection = targetDirection.normalized;
