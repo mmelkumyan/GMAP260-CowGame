@@ -7,9 +7,9 @@ public class drawPolygon : MonoBehaviour
 
     public float heightOfUFO = 0.0f;
     //public float lineDistanceLimit = 30.0f;
-    public float distanceDiffLimit = 0.05f;
+    public float distanceDiffLimit = 0.1f;
 
-    private List<Vector2> positions = new List<Vector2>();
+    private List<GameObject> points = new List<GameObject>();
 
     public GameObject createdProject;
 
@@ -36,25 +36,32 @@ public class drawPolygon : MonoBehaviour
 
     private float distanceInLine = 0.0f;
 
+    public Vector2 V3toV2(Vector3 pos)
+    {
+        return new Vector2(pos.x, pos.z);
+    }
+
     public void savePoint(Transform characterPosition)
     {
-        Vector2 currentPosition = new Vector2(characterPosition.position.x, characterPosition.position.z);
-        if (positions.Count == 0)
+        Vector2 currentPosition = V3toV2(characterPosition.position);
+        if (points.Count == 0)
         {
-            GameObject.Instantiate(createdProject, transform.position - new Vector3(0.0f, heightOfUFO, 0.0f), transform.rotation);
-            //positions.Add(currentPosition);
-            positions.Add(currentPosition);
+            var newPosObj = GameObject.Instantiate(createdProject, transform.position - new Vector3(0.0f, heightOfUFO, 0.0f), transform.rotation);
+            newPosObj.GetComponent<lineDestroy>().UFO = this.gameObject;
+            points.Add(newPosObj);
         }
         else
         {
-            Vector2 lastPosition = positions[positions.Count - 1];
+            Vector2 lastPosition = V3toV2(points[points.Count - 1].transform.position);
             float distanceDiff = Vector2.Distance(currentPosition, lastPosition);
             //Debug.Log(distanceDiff);
             //Debug.Log(lastPosition);
             if (distanceDiff > distanceDiffLimit)
             {
-                GameObject.Instantiate(createdProject, transform.position - new Vector3(0.0f, heightOfUFO, 0.0f), transform.rotation);
-                positions.Add(currentPosition);
+                var newPosObj = GameObject.Instantiate(createdProject, transform.position - new Vector3(0.0f, heightOfUFO, 0.0f), transform.rotation);
+                newPosObj.GetComponent<lineDestroy>().UFO = this.gameObject;
+                points.Add(newPosObj);
+                checkIntersection();
                 //distanceInLine
                 //Debug.Log(currentPosition);
                 //Debug.Log(positions);
@@ -63,19 +70,74 @@ public class drawPolygon : MonoBehaviour
         }
     }
 
-    public void popPosition(Vector2 deletePos)
+    void checkIntersection()
     {
-
+        if (points.Count <= 3)
+            return;
+        Vector2 pointA1 = V3toV2(points[points.Count - 1].transform.position);
+        Vector2 pointA2 = V3toV2(points[points.Count - 2].transform.position);
+        for (int i = 1; i < points.Count - 3; ++i)
+        {
+            Vector2 pointB1 = V3toV2(points[i].transform.position);
+            Vector2 pointB2 = V3toV2(points[i - 1].transform.position);
+            if (checkLineIntersection(pointA1, pointA2, pointB1, pointB2))
+            {
+                Debug.Log("HAHAHAHAHA");
+                // Check all the cows
+                // Delete all the points
+            }
+        }
     }
 
-    public bool checkPointInside(Vector2 cowPos)
+    bool checkLineIntersection(Vector2 A1, Vector2 A2, Vector2 B1, Vector2 B2)
     {
-        var j = positions.Count - 1;
-        var inside = false;
-        for (int i = 0; i < positions.Count; j = i++)
+        float tmp = (B2.x - B1.x) * (A2.y - A1.y) - (B2.y - B1.y) * (A2.x - A1.x);
+
+        if (tmp == 0)
         {
-            var pi = positions[i];
-            var pj = positions[j];
+            return false;
+        }
+
+        float mu = ((A1.x - B1.x) * (A2.y - A1.y) - (A1.y - B1.y) * (A2.x - A1.x)) / tmp;
+
+        var pos = new Vector2(
+            B1.x + (B2.x - B1.x) * mu,
+            B1.y + (B2.y - B1.y) * mu
+        );
+
+        if (pos.x >= Mathf.Min(A1.x, A2.x) && pos.x <= Mathf.Max(A1.x, A2.x) &&
+            pos.y >= Mathf.Min(A1.y, A2.y) && pos.y <= Mathf.Max(A1.y, A2.y) &&
+            pos.x >= Mathf.Min(B1.x, B2.x) && pos.x <= Mathf.Max(B1.x, B2.x) &&
+            pos.y >= Mathf.Min(B1.y, B2.y) && pos.y <= Mathf.Max(B1.y, B2.y))
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public void deletePosition(GameObject deletePos)
+    {
+        if (points.Count == 0)
+            return;
+
+        var tmp = points[0];
+        while (tmp != deletePos && points.Count > 1)
+        {
+            points.RemoveAt(0);
+            tmp = points[0];
+        }
+        points.RemoveAt(0);
+    }
+
+    public bool checkPointInside(Vector2 cowPos, List<GameObject> polyPoints)
+    {
+        var j = polyPoints.Count - 1;
+        var inside = false;
+        for (int i = 0; i < polyPoints.Count; j = i++)
+        {
+            var pi = V3toV2(polyPoints[i].transform.position);
+            var pj = V3toV2(polyPoints[j].transform.position);
             if (((pi.y <= cowPos.y && cowPos.y < pj.y) || (pj.y <= cowPos.y && cowPos.y < pi.y)) &&
                 (cowPos.x < (pj.x - pi.x) * (cowPos.y - pi.y) / (pj.y - pi.y) + pi.x))
                 inside = !inside;
@@ -83,7 +145,7 @@ public class drawPolygon : MonoBehaviour
         return inside;
     }
 
-    private void printPositions()
+    /*private void printPositions()
     {
         string tmp = "";
         foreach (Vector3 p in positions)
@@ -92,6 +154,6 @@ public class drawPolygon : MonoBehaviour
             
         }
         Debug.Log(tmp);
-    }
+    }*/
 
 }
