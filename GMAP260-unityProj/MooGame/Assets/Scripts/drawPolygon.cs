@@ -40,7 +40,11 @@ public class drawPolygon : MonoBehaviour
     {
         Vector2 currentPosition = new Vector2(characterPosition.position.x, characterPosition.position.z);
         if (positions.Count == 0)
+        {
+            GameObject.Instantiate(createdProject, transform.position - new Vector3(0.0f, heightOfUFO, 0.0f), transform.rotation);
+            //positions.Add(currentPosition);
             positions.Add(currentPosition);
+        }
         else
         {
             Vector2 lastPosition = positions[positions.Count - 1];
@@ -57,6 +61,11 @@ public class drawPolygon : MonoBehaviour
                 //printPositions();
             }
         }
+    }
+
+    public void popPosition(Vector2 deletePos)
+    {
+
     }
 
     public bool checkPointInside(Vector2 cowPos)
