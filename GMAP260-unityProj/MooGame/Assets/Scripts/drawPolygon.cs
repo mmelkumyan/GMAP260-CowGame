@@ -101,18 +101,33 @@ public class drawPolygon : MonoBehaviour
                 //TODO: Check all the cows
                 // Delete all the points
 
-                var polyPoints = points.GetRange(i, points.Count - i);
-
+                var polyPoints = points.GetRange(i, points.Count - i);//closed polygon made
+                var cowFound = false;
                 var cows = GameObject.FindGameObjectsWithTag("Cow");
                 foreach (var cow in cows)
                 {
-                    if(checkPointInside(V3toV2(cow.transform.position), polyPoints))
+                    if (checkPointInside(V3toV2(cow.transform.position), polyPoints))
                     {
                         Debug.Log("COW FOUND!");
                         cow.GetComponent<CowMovement>().Abduct();
+                        //InPolyDestroy(true);
+                        //clear points list
+                        cowFound = true;
                     }
                 }
-                
+
+                //removing closed polygon
+                foreach(var p in polyPoints)
+                {
+                    p.GetComponent<lineDestroy>().InPolyDestroy(cowFound);
+                }
+                //removing extra points
+                for (int j=0; j<=i-1; j++)
+                {
+                    points[j].GetComponent<lineDestroy>().OutPolyDestroy();
+                }
+
+                points.Clear();                
             }
         }
     }
