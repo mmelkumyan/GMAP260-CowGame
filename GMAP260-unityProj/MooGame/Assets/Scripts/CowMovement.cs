@@ -51,4 +51,9 @@ public class CowMovement : MonoBehaviour
         }
         
     }
+
+    public void Abduct()
+    {
+
+    }
 }

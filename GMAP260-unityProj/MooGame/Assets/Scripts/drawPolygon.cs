@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class drawPolygon : MonoBehaviour
 {
+    /*TODO:
+    Art: 
+        Fix walk animation
+        Create line beam
+        Textures!
+        Menus
+    Programming:
+        Remove cows 
+    UI:
+        Cows left
+        Time limit
+        Main menu
+    */
+
+
 
     public float heightOfUFO = 0.0f;
     //public float lineDistanceLimit = 30.0f;
@@ -74,17 +89,29 @@ public class drawPolygon : MonoBehaviour
     {
         if (points.Count <= 3)
             return;
-        Vector2 pointA1 = V3toV2(points[points.Count - 1].transform.position);
-        Vector2 pointA2 = V3toV2(points[points.Count - 2].transform.position);
+        Vector2 pointA1 = V3toV2(points[points.Count - 1].transform.position); //most recent point
+        Vector2 pointA2 = V3toV2(points[points.Count - 2].transform.position); //2nd most recent point
         for (int i = 1; i < points.Count - 3; ++i)
         {
             Vector2 pointB1 = V3toV2(points[i].transform.position);
             Vector2 pointB2 = V3toV2(points[i - 1].transform.position);
             if (checkLineIntersection(pointA1, pointA2, pointB1, pointB2))
             {
-                Debug.Log("HAHAHAHAHA");
-                // Check all the cows
+                Debug.Log("Polygon made");
+                //TODO: Check all the cows
                 // Delete all the points
+
+                var polyPoints = points.GetRange(i, points.Count - i);
+
+                var cows = GameObject.FindGameObjectsWithTag("Cow");
+                foreach (var cow in cows)
+                {
+                    if(checkPointInside(V3toV2(cow.transform.position), polyPoints))
+                    {
+                        Debug.Log("COW FOUND!");
+                    }
+                }
+                
             }
         }
     }
