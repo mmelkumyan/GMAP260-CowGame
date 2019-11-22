@@ -25,4 +25,14 @@ public class lineDestroy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void InPolyDestroy(bool cowFound)
+    {
+
+    }
+
+    public void OutPolyDestroy()
+    {
+
+    }
 }
