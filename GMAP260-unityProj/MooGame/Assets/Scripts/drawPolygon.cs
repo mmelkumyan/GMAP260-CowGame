@@ -109,6 +109,7 @@ public class drawPolygon : MonoBehaviour
                     if(checkPointInside(V3toV2(cow.transform.position), polyPoints))
                     {
                         Debug.Log("COW FOUND!");
+                        cow.GetComponent<CowMovement>().Abduct();
                     }
                 }
                 
