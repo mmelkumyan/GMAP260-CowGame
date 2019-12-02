@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameRules.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\CowMovement.cs" />
     <Compile Include="Assets\Scripts\drawPolygon.cs" />
@@ -70,31 +71,31 @@
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\TestInter.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/skynervous/Desktop/Drexel/Overview/Project/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Mark/Documents/GIT/myGames/GMAP260-repo/GMAP260-unityProj/MooGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

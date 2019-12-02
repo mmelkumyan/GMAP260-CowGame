@@ -18,7 +18,7 @@ public class CowMovement : MonoBehaviour
     public float deathSpeed = 2.0f;
     public float destroyDis = 1.0f;
 
-    public bool dying = false;
+    public bool dead = false;
 
     Transform UFO;
 
@@ -34,7 +34,7 @@ public class CowMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dying)
+        if (dead)
         {
             MovingTowardsUFO();
         }
@@ -71,7 +71,7 @@ public class CowMovement : MonoBehaviour
 
     public void Abduct()
     {
-        dying = true;
+        dead = true;
     }
 
     void MovingTowardsUFO()

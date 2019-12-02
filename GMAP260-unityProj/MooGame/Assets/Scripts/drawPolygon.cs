@@ -38,15 +38,6 @@ public class drawPolygon : MonoBehaviour
     void Update()
     {
         savePoint(transform);
-        
-
-        //X counter checks for every 60 frames
-        //X after 60 frames call makePoint function
-        //X makePoint adds position to array
-        //X make lines between all pairs of points
-        //X check if lines cross OR if two points are vey close
-        //X pass points to checkForCows function
-        //after x seconds, remove top point from queue
     }
 
     private float distanceInLine = 0.0f;
@@ -97,7 +88,7 @@ public class drawPolygon : MonoBehaviour
             Vector2 pointB2 = V3toV2(points[i - 1].transform.position);
             if (checkLineIntersection(pointA1, pointA2, pointB1, pointB2))
             {
-                Debug.Log("Polygon made");
+                //Debug.Log("Polygon made");
                 //TODO: Check all the cows
                 // Delete all the points
 
@@ -108,7 +99,7 @@ public class drawPolygon : MonoBehaviour
                 {
                     if (checkPointInside(V3toV2(cow.transform.position), polyPoints))
                     {
-                        Debug.Log("COW FOUND!");
+                        //Debug.Log("COW FOUND!");
                         cow.GetComponent<CowMovement>().Abduct();
                         //InPolyDestroy(true);
                         //clear points list

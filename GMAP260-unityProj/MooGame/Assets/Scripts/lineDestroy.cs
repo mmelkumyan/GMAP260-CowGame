@@ -29,6 +29,8 @@ public class lineDestroy : MonoBehaviour
     public void InPolyDestroy(bool cowFound)
     {
         Destroy(gameObject);
+        //TODO: if cowFound=True, fade away green.
+        //Otherwise fade away red
     }
 
     public void OutPolyDestroy()
