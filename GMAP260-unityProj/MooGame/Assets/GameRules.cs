@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameRules : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameRules : MonoBehaviour
     private float MaxTime = 60.0f;
     private float TimeLeft;
     public Text DeclareWinnerText;
+
+    public Text CowNumberText;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +47,7 @@ public class GameRules : MonoBehaviour
 
     public void CheckUFOwin()
     {
+        int cowNumber = 0;
         bool allCowsDead = true;
         var cows = GameObject.FindGameObjectsWithTag("Cow");
         foreach (var cow in cows)
@@ -51,8 +55,12 @@ public class GameRules : MonoBehaviour
             if ( !(cow.GetComponent<CowMovement>().dead)) //if a cow is alive
             {
                 allCowsDead = false;
+
+                cowNumber += 1;
             }
         }
+        CowNumberText.text = " × " + cowNumber.ToString();
+        
         if(allCowsDead)
         {
             DeclareWinnerText.text = "The UFO wins!!";
@@ -77,7 +85,13 @@ public class GameRules : MonoBehaviour
         finished = true;
         TimerText.color = Color.yellow;
         DeclareWinnerText.gameObject.SetActive(true);
-        Time.timeScale = 0; //freeze the game
+        //Time.timeScale = 0; //freeze the game
         //BRING UP MENU HERE
+        Invoke("LoadStartMenu", 3.0f);
+    }
+
+    public void LoadStartMenu()
+    {
+        SceneManager.LoadScene("Start Scene");
     }
 }

@@ -71,7 +71,9 @@ public class CowMovement : MonoBehaviour
 
     public void Abduct()
     {
+        m_rigidbody.constraints = RigidbodyConstraints.None;
         dead = true;
+        GetComponent<AudioSource>().Play();
     }
 
     void MovingTowardsUFO()
@@ -81,6 +83,6 @@ public class CowMovement : MonoBehaviour
             Destroy(this.gameObject);
         transform.localScale = transform.localScale * deathSize;
         var direction = Vector3.Normalize(UFO.position - transform.position);
-        m_rigidbody.AddForce(direction * 10 / distance * deathSpeed, ForceMode.VelocityChange);
+        m_rigidbody.MovePosition(Vector3.Lerp(transform.position, UFO.position, Time.deltaTime * 2.0f));
     }
 }
