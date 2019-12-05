@@ -81,6 +81,11 @@ public class CowMovement : MonoBehaviour
         var distance = Vector3.Distance(UFO.position, transform.position);
         if (distance <= destroyDis)
             Destroy(this.gameObject);
+        if (Vector3.Magnitude(transform.localScale) < 0.1f)
+        {
+            Destroy(gameObject);
+        }
+
         transform.localScale = transform.localScale * deathSize;
         var direction = Vector3.Normalize(UFO.position - transform.position);
         m_rigidbody.MovePosition(Vector3.Lerp(transform.position, UFO.position, Time.deltaTime * 2.0f));

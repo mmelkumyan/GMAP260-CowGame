@@ -17,6 +17,7 @@ public class GameRules : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TimeLeft = MaxTime;
         DeclareWinnerText.gameObject.SetActive(false);
     }
 
@@ -37,7 +38,7 @@ public class GameRules : MonoBehaviour
             return; //no longer updates timer.
         }
 
-        TimeLeft = MaxTime - Time.time;
+        TimeLeft -= Time.deltaTime;
 
         string mins = ((int)TimeLeft / 60).ToString();
         string secs = (TimeLeft % 60).ToString("f2");
