@@ -10,7 +10,12 @@ public class GameRules : MonoBehaviour
     public Text TimerText;
     private float MaxTime = 60.0f;
     private float TimeLeft;
-    public Text DeclareWinnerText;
+    public Image winImage;
+
+    public Sprite uFOWinSprite;
+    public Sprite cowWinSprite;
+
+    //public Text DeclareWinnerText;
 
     public Text CowNumberText;
 
@@ -18,7 +23,8 @@ public class GameRules : MonoBehaviour
     void Start()
     {
         TimeLeft = MaxTime;
-        DeclareWinnerText.gameObject.SetActive(false);
+        winImage.gameObject.SetActive(false);
+        //DeclareWinnerText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -64,7 +70,8 @@ public class GameRules : MonoBehaviour
         
         if(allCowsDead)
         {
-            DeclareWinnerText.text = "The UFO wins!!";
+            winImage.sprite = uFOWinSprite;
+            //DeclareWinnerText.text = "The UFO wins!!";
             //Debug.Log("the UFO wins!!");
             Finish();
         }
@@ -75,7 +82,8 @@ public class GameRules : MonoBehaviour
     {
         if (TimeLeft <= 0)
         {
-            DeclareWinnerText.text = "The COWS win!!";
+            winImage.sprite = cowWinSprite;
+            //DeclareWinnerText.text = "The COWS win!!";
             //Debug.Log("the COWS win!!");
             Finish();
         }
@@ -85,7 +93,8 @@ public class GameRules : MonoBehaviour
     {
         finished = true;
         TimerText.color = Color.yellow;
-        DeclareWinnerText.gameObject.SetActive(true);
+        winImage.gameObject.SetActive(true);
+        //DeclareWinnerText.gameObject.SetActive(true);
         //Time.timeScale = 0; //freeze the game
         //BRING UP MENU HERE
         Invoke("LoadStartMenu", 3.0f);

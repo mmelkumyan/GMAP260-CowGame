@@ -24,16 +24,21 @@ public class CowMovement : MonoBehaviour
 
     Rigidbody m_rigidbody;
 
+    Animator m_animator;
+
     // Start is called before the first frame update
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
         UFO = GameObject.FindGameObjectWithTag("UFO").transform;
+        m_animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateAnimation();
+
         if (dead)
         {
             MovingTowardsUFO();
@@ -42,6 +47,18 @@ public class CowMovement : MonoBehaviour
         {
             UpdateRotation();
             UpdateMotion();
+        }
+    }
+
+    void UpdateAnimation()
+    {
+        if (m_rigidbody.velocity.magnitude <= 1.0f)
+        {
+            m_animator.SetBool("Moving", false);
+        }
+        else
+        {
+            m_animator.SetBool("Moving", true);
         }
     }
 

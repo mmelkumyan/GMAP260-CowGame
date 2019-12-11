@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class StartMenuLogic : MonoBehaviour
 {
+    public GameObject GuideImage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +23,16 @@ public class StartMenuLogic : MonoBehaviour
     public void OnStartButtonPress()
     {
         GetComponent<AudioSource>().Play();
-        Invoke("LoadNextScene", 1.0f);
+        GuideImage.gameObject.SetActive(true);
     }
 
     void LoadNextScene()
     {
         SceneManager.LoadScene("Level1");
+    }
+
+    public void OnGuideButtonDown()
+    {
+        LoadNextScene();
     }
 }
