@@ -20,7 +20,7 @@ public class StartMenuLogic : MonoBehaviour
     public void OnStartButtonPress()
     {
         GetComponent<AudioSource>().Play();
-        Invoke("LoadNextScene", 2.0f);
+        Invoke("LoadNextScene", 1.0f);
     }
 
     void LoadNextScene()
